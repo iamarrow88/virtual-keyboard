@@ -4,7 +4,8 @@ export default {
     'capsToggle': false,
     'posCaret': 0,
     'langSwitchToggleStack': [],
-    'line': 0
+    'line': 0,
+    'stack': []
 
 
 

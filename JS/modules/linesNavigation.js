@@ -14,6 +14,9 @@ export function arrowMove(direction) {
     ++state.posCaret;
   } else if (direction === 'up') {
     console.log('press up');
+    /*if(state.line !== 0){
+
+    }*/
     if(state.posCaret > 70) {
       state.posCaret -= 70;
     }
