@@ -1,28 +1,20 @@
-import {symbols, specials} from '../langs/specialKeys.js';
-
-export function findEqual(elem, arr){
-  for (let i = 0; i < arr.length; i++){
-    if(arr[i] === elem){
+export function findEqual(elem, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === elem) {
       return true;
     }
   }
   return false;
 }
 
-export function getElementIndex(elem, arrayOfKeys){
-  let index = arrayOfKeys.indexOf(elem);
-  return index;
+export function getElementIndex(elem, arrayOfKeys) {
+  return arrayOfKeys.indexOf(elem);
 }
 
-export function checkSymbols(index){
-  if(index > -1){
-    return true;
-  } else {
-    return false
-  }
-};
+export function checkSymbols(index) {
+   return index > -1;
+}
 
-export function substitution(index, values){
-  let elem = values[index];
-  return elem;
-};
+export function getKeyValueByIndex(index, values) {
+  return values[index];
+}

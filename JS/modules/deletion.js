@@ -1,36 +1,26 @@
-import {focusOn, getCaretPos} from './cursorMoving.js';
+import { focusOnTextarea, getCaretPos } from './cursorMoving.js';
+import htmlElements from './state/htmlElements.js';
+import state from "./state/state.js";
 
-/* const textarea = ; */
-
-export function backspaceDeletion(posCaret){
-  focusOn();
+export function backspaceDeletion() {
+  focusOnTextarea();
   getCaretPos();
-  let input = document.querySelector('textarea');
-  let text = input.value;
-  let res = text.slice(0, -1);
-  if (posCaret > 0){
-    --posCaret;
+  const text = htmlElements.textarea.value;
+  const res = text.slice(0, -1);
+  if (state.posCaret > 0) {
+    --state.posCaret;
   }
-  document.querySelector('.textarea').value = res;
-  console.log(posCaret);
-  console.log(res);
-  return posCaret;
+  htmlElements.textarea.value = res;
+  return state.posCaret;
 }
 
-
-
-export function deleteDeletion(posCaret){
-  focusOn();
-  posCaret = getCaretPos();
-  let input = document.querySelector('textarea');
-  let text = input.value.split('');
-  text.splice(posCaret, 1);
-  if (posCaret > 0){
-    posCaret -= 1;
+export function deleteDeletion() {
+  focusOnTextarea();
+  state.posCaret = getCaretPos();
+  const text = htmlElements.textarea.value.split('');
+  if (state.posCaret > 0) {
+    state.posCaret -= 1;
+    text.splice(state.posCaret, 1);
   }
-  document.querySelector('.textarea').value = text.join('');
-  console.log(text.join(''));
-  console.log(posCaret);
-  return ;
+  htmlElements.textarea.value = text.join('');
 }
-
