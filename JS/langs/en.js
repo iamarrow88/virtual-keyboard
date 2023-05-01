@@ -164,7 +164,7 @@ const en = [
     caps: '}',
   },
   {
-    code: 'Backslash', 
+    code: 'Backslash',
     id: 'backslash',
     normal: '\\',
     caps: '|',
@@ -387,7 +387,7 @@ const en = [
     id: 'alt',
     normal: 'Alt',
     caps: null,
-  }]
+  }],
 ];
 
 export default en;

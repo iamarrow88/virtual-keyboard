@@ -8,19 +8,19 @@ import {
   values,
   keys,
 } from './JS/langs/specialKeys.js';
+
 import {
   findEqual,
   getElementIndex,
   checkSymbols,
   substitution,
 } from './JS/modules/clearSpecials.js';
-// eslint-disable-next-line import/no-cycle
+
 import {
   backspaceDeletion,
   deleteDeletion,
 } from './JS/modules/deletion.js';
 
-// eslint-disable-next-line import/no-cycle
 import {
   arrowMove,
   arrowR,
@@ -29,7 +29,7 @@ import {
   enterKey,
 }
   from './JS/modules/linesNavigation.js';
-import {focusOn, getCaretPos} from './JS/modules/cursorMoving.js';
+import { focusOn, getCaretPos } from './JS/modules/cursorMoving.js';
 
 const langLettersCollection = [en, ru];
 
@@ -50,8 +50,8 @@ body.addEventListener('keydown', (event) => {
   focusOn(textarea);
   posCaret = textarea.selectionStart;
   const idElem = document.querySelector(`#${event.code}`);
-  if (event.code === 'CapsLock'){
-    if (capsToggle){
+  if (event.code === 'CapsLock') {
+    if (capsToggle) {
       capsToggle = false;
     } else {
       capsToggle = true;
@@ -97,8 +97,6 @@ body.addEventListener('keyup', (event) => {
   }
 });
 
-
-
 textarea.addEventListener('click', getCaretPos(posCaret));
 
 keysBlock.addEventListener('mousedown', (event) => {
@@ -120,7 +118,7 @@ keysBlock.addEventListener('mousedown', (event) => {
         posCaret = document.querySelector('textarea').selectionStart;
       } else {
         event.preventDefault();
-        if (shiftToggle || capsToggle){
+        if (shiftToggle || capsToggle) {
           textarea.value += event.target.dataset.mouseId.toUpperCase();
         } else {
           textarea.value += event.target.dataset.mouseId;
@@ -130,8 +128,8 @@ keysBlock.addEventListener('mousedown', (event) => {
       }
     }
   }
-  if (event.target.dataset.mouseId === 'capslock'){
-    if (capsToggle){
+  if (event.target.dataset.mouseId === 'capslock') {
+    if (capsToggle) {
       capsToggle = false;
     } else {
       capsToggle = true;
@@ -191,10 +189,7 @@ downArrow.addEventListener('click', () => arrowD(posCaret));
 const enter = document.querySelector('#Enter');
 enter.addEventListener('click', (event) => enterKey(event));
 
-
 /* ------------------- SHIFT & CAPS ------------------- */
 
 const shiftLeft = document.querySelector('#ShiftLeft');
 const shiftRight = document.querySelector('#ShiftRight');
-
-

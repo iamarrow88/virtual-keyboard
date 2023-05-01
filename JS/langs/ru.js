@@ -164,7 +164,7 @@ const ru = [
     caps: 'Ъ',
   },
   {
-    code: 'Backslash', 
+    code: 'Backslash',
     id: 'backslash',
     normal: '\\',
     caps: '/',
@@ -387,7 +387,7 @@ const ru = [
     id: 'alt',
     normal: 'Alt',
     caps: null,
-  }]
+  }],
 ];
 
 export default ru;

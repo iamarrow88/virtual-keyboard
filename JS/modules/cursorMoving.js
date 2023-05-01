@@ -1,12 +1,9 @@
 export function focusOn(textarea) {
-    textarea.focus();
+  textarea.focus();
 }
 
 export function getCaretPos(posCaret) {
-    posCaret = document.querySelector('.textarea').selectionStart;
-    console.log(posCaret);
-    return posCaret;
+  posCaret = document.querySelector('.textarea').selectionStart;
+  console.log(posCaret);
+  return posCaret;
 }
-
-
-
