@@ -1,7 +1,7 @@
 import {focusOnTextarea} from "./cursorMoving.js";
 import state from "./state/state.js";
 import htmlElements from "./state/htmlElements.js";
-import changeLang from "./changeLang.js";
+import {changeLang} from "./changeLang.js";
 import {createBlock} from "./create.js";
 import langLetters from "../langs/langLetters.js";
 
@@ -31,15 +31,7 @@ function keyDown(event){
         createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
 
     } else {
-        const newLangFromLocalStorage = state.langFromLocalStorage;
-        state.langFromLocalStorage = changeLang();
-
-        if (newLangFromLocalStorage !== state.langFromLocalStorage) {
-            const text = htmlElements.textarea.value;
-            htmlElements.body.innerHTML = '';
-            createBlock(langLetters[state.langFromLocalStorage], state.isCapsOn);
-            htmlElements.textarea.value = text;
-        }
+        state.langFromLocalStorage = changeLang('keyboard');
     }
 
     idElem.classList.add('active');

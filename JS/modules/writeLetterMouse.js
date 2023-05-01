@@ -4,6 +4,7 @@ import htmlElements from "./state/htmlElements.js";
 import {createBlock} from "./create.js";
 import langLetters from "../langs/langLetters.js";
 import {checkSymbols, findEqual, getElementIndex, getKeyValueByIndex} from "./clearSpecials.js";
+import {changeLang} from "./changeLang.js";
 
 
 function mouseDown(event) {
@@ -40,6 +41,11 @@ function mouseDown(event) {
     if (event.target.dataset.mouseId === 'capslock') {
         state.capsToggle = !state.capsToggle;
         createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
+    }
+
+    if(event.target.dataset.mouseId === 'meta'){
+        console.log('meta');
+        changeLang('mouse');
     }
 
     if (event.target.dataset.mouseId === 'alt') {
