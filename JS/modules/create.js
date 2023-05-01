@@ -42,13 +42,24 @@ export function createKey(arrayOfKeys, isCaps) {
     const key = document.createElement('div');
     const elemClass = arrayOfKeys[k].code.toLowerCase();
     key.classList.add('row__keys', `${elemClass}`);
-    if(isCaps){
-      key.innerHTML = arrayOfKeys[k].caps;
-    } else {
-      key.innerHTML = arrayOfKeys[k].normal;
+    if(arrayOfKeys[k].id !== 'meta') {
+      if(isCaps){
+        key.innerHTML = arrayOfKeys[k].caps;
+      } else {
+        key.innerHTML = arrayOfKeys[k].normal;
+      }
     }
+
     key.setAttribute('id', arrayOfKeys[k].code);
     key.dataset.mouseId = arrayOfKeys[k].id;
+
+    if(arrayOfKeys[k].id === 'meta') {
+      const img = document.createElement('img');
+      img.classList.add('change-lang');
+      img.src = './assets/changeLang.png';
+      img.dataset.mouseId = arrayOfKeys[k].id;
+      key.append(img)
+    }
     row.append(key);
   }
   return row;

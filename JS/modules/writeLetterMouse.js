@@ -44,7 +44,6 @@ function mouseDown(event) {
     }
 
     if(event.target.dataset.mouseId === 'meta'){
-        console.log('meta');
         changeLang('mouse');
     }
 
