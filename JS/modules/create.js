@@ -1,4 +1,5 @@
 import htmlElements from "./state/htmlElements.js";
+import state from "./state/state";
 
 htmlElements.body = document.querySelector('body');
 
@@ -28,19 +29,24 @@ export function createBlock(langLettersArray) {
   keyboard.append(col);
   container.append(keyboard);
   for (let i = 0; i < langLettersArray.length; i++) {
-    const row = createKey(langLettersArray[i]);
+    const row = createKey(langLettersArray[i], state.capsToggle);
     col.append(row);
   }
 }
 
-export function createKey(arrayOfKeys) {
+export function createKey(arrayOfKeys, isCaps) {
+  console.log(isCaps);
   const row = document.createElement('div');
   row.classList.add('row');
   for (let k = 0; k < arrayOfKeys.length; k++) {
     const key = document.createElement('div');
     const elemClass = arrayOfKeys[k].code.toLowerCase();
     key.classList.add('row__keys', `${elemClass}`);
-    key.innerHTML = arrayOfKeys[k].normal;
+    if(isCaps){
+      key.innerHTML = arrayOfKeys[k].caps;
+    } else {
+      key.innerHTML = arrayOfKeys[k].normal;
+    }
     key.setAttribute('id', arrayOfKeys[k].code);
     key.dataset.mouseId = arrayOfKeys[k].id;
     row.append(key);

@@ -61,23 +61,17 @@ export function arrowMove(direction) {
   return posCaret;
 }*/
 
-export function enterKey(event, posCaret) {
+export function enterKey(event) {
   focusOnTextarea();
   event.preventDefault();
   event.stopPropagation();
-  document.querySelector('textarea').focus();
-  const selectionStart = document.querySelector('.textarea').selectionStart;
-  const text = document.querySelector('textarea').value;
-  console.log(text);
-  console.log(selectionStart);
-  posCaret = document.querySelector('.textarea').selectionStart;
+  htmlElements.textarea.focus();
+  const text = htmlElements.textarea.value;
+  state.posCaret = htmlElements.textarea.selectionStart;
 
-  console.log(posCaret);
-  const startText = text.substring(0, posCaret);
-  const endText = text.substring(posCaret, text.length);
-  console.log(startText);
-  console.log(endText);
-  posCaret = document.querySelector('textarea').selectionStart;
+  const startText = text.substring(0, state.posCaret);
+  const endText = text.substring(state.posCaret, text.length);
+  state.posCaret = htmlElements.textarea.selectionStart;
   document.querySelector('textarea').value = `${startText}\n${endText}`;
-  return posCaret;
+  return state.posCaret;
 }

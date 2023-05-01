@@ -1,6 +1,6 @@
 export default {
-    'langFromLocalStorage': '',
-    'shiftToggle': false,
+    'langFromLocalStorage': 'ru',
+    'isCapsOn': false,
     'capsToggle': false,
     'posCaret': 0,
     'langSwitchToggleStack': [],
