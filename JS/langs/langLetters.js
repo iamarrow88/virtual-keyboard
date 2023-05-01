@@ -26,11 +26,14 @@ const specials = [
     'control',
     'meta',
     'alt',
-    'arrowup',
-    'arrowdown',
-    'arrowleft',
-    'arrowright'
-];
+ ];
+
+const arrows = {
+    arrowleft: 'left ',
+    arrowdown: 'down ',
+    arrowright: 'right ',
+    arrowup: 'up '
+}
 
 const symbolsKeys = Object.keys(symbols);
 const symbolsValues = Object.values(symbols);
@@ -41,5 +44,6 @@ export default {
     symbols: symbols,
     specials: specials,
     symbolsKeys: symbolsKeys,
-    symbolsValues: symbolsValues
+    symbolsValues: symbolsValues,
+    arrows: arrows
 };

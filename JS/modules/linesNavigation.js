@@ -7,24 +7,18 @@ export function arrowMove(direction) {
   focusOnTextarea();
   state.posCaret = getCaretPos();
   if(direction === 'left') {
-    console.log('press left');
     --state.posCaret;
   } else if (direction === 'right') {
-    console.log('press right');
     ++state.posCaret;
   } else if (direction === 'up') {
-    console.log('press up');
-
     if(state.posCaret > 70) {
       state.posCaret -= 70;
     }
   } else if (direction === 'down') {
-    console.log('press down');
     if (state.posCaret < htmlElements.textarea.value.length) {
       state.posCaret += 70;
     }
   }
-  console.log(state.posCaret);
   htmlElements.textarea.setSelectionRange(state.posCaret, state.posCaret);
   return state.posCaret;
 }

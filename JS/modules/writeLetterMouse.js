@@ -16,7 +16,6 @@ function mouseDown(event) {
         if (active) active.classList.remove('active');
 
         event.target.classList.add('active');
-
         if (!findEqual(keyIdForMouse, langLetters.specials)) {
 
             if (checkSymbols(getElementIndex(keyIdForMouse, langLetters.symbolsKeys))) {
@@ -25,6 +24,8 @@ function mouseDown(event) {
                 const text = getKeyValueByIndex(index, langLetters.symbolsValues);
                 htmlElements.textarea.value += text;
                 state.posCaret = htmlElements.textarea.selectionStart;
+            } else if (checkSymbols(getElementIndex(keyIdForMouse, Object.keys(langLetters.arrows)))) {
+                htmlElements.textarea.value += langLetters.arrows[keyIdForMouse];
             } else {
                 event.preventDefault();
 
@@ -38,6 +39,7 @@ function mouseDown(event) {
             }
         }
     }
+
     if (event.target.dataset.mouseId === 'capslock') {
         state.capsToggle = !state.capsToggle;
         createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
