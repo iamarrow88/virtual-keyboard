@@ -1,9 +1,12 @@
-export function focusOn(textarea) {
-  textarea.focus();
+import htmlElements from './state/htmlElements.js';
+import state from "./state/state.js";
+
+export function focusOnTextarea() {
+  htmlElements.textarea.focus();
 }
 
-export function getCaretPos(posCaret) {
-  posCaret = document.querySelector('.textarea').selectionStart;
-  console.log(posCaret);
-  return posCaret;
+export function getCaretPos() {
+  state.posCaret = htmlElements.textarea.selectionStart;
+  console.log(`state.posCaret is ${state.posCaret}`);
+  return state.posCaret;
 }

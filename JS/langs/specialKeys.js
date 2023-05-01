@@ -14,7 +14,20 @@ export const symbols = {
   tab: '  ',
 };
 
-export const specials = ['backspace', 'del', 'capslock', 'enter', 'shift', 'control', 'meta', 'alt', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright'];
+export const specials = [
+    'backspace',
+    'del',
+    'capslock',
+    'enter',
+    'shift',
+    'control',
+    'meta',
+    'alt',
+    'arrowup',
+    'arrowdown',
+    'arrowleft',
+    'arrowright'
+];
 
-export const keys = Object.keys(symbols);
-export const values = Object.values(symbols);
+export const symbolsKeys = Object.keys(symbols);
+export const symbolsValues = Object.values(symbols);

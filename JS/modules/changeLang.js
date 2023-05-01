@@ -1,14 +1,12 @@
-function changeLang(stack, langFromLocalStorage) {
-  if (stack[0] === 'shift' && stack[1] === 'alt') {
-    if (langFromLocalStorage === 1) {
-      langFromLocalStorage = 0;
-    } else {
-      langFromLocalStorage = 1;
-    }
-    localStorage.setItem('langFromLocalStorage', `${langFromLocalStorage}`);
+import state from "./state/state.js";
+
+export default function () {
+  if (state.stack[0] === 'shift' && state.stack[1] === 'alt') {
+    state.langFromLocalStorage = +state.langFromLocalStorage === 1 ? 0 : 1;
+    localStorage.setItem('langFromLocalStorage', `${state.langFromLocalStorage}`);
   }
-  if (stack.length > 2) {
-    stack.shift();
+  if (state.stack.length > 2) {
+    state.stack.shift();
   }
-  return langFromLocalStorage;
+  return state.langFromLocalStorage;
 }

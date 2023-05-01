@@ -1,5 +1,3 @@
-import { symbols, specials } from '../langs/specialKeys.js';
-
 export function findEqual(elem, arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === elem) {
@@ -10,18 +8,13 @@ export function findEqual(elem, arr) {
 }
 
 export function getElementIndex(elem, arrayOfKeys) {
-  const index = arrayOfKeys.indexOf(elem);
-  return index;
+  return arrayOfKeys.indexOf(elem);
 }
 
 export function checkSymbols(index) {
-  if (index > -1) {
-    return true;
-  }
-  return false;
+   return index > -1;
 }
 
-export function substitution(index, values) {
-  const elem = values[index];
-  return elem;
+export function getKeyValueByIndex(index, values) {
+  return values[index];
 }

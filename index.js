@@ -1,3 +1,5 @@
+import state from "./JS/modules/state/state.js";
+import htmlElements from './JS/modules/state/htmlElements.js'
 import {
   createBlock,
 } from './JS/modules/create.js';
@@ -5,15 +7,16 @@ import en from './JS/langs/en.js';
 import ru from './JS/langs/ru.js';
 import {
   specials,
-  values,
-  keys,
+  symbolsValues,
+  symbolsKeys,
 } from './JS/langs/specialKeys.js';
 
+import changeLang from './JS/modules/changeLang.js'
 import {
   findEqual,
   getElementIndex,
   checkSymbols,
-  substitution,
+  getKeyValueByIndex,
 } from './JS/modules/clearSpecials.js';
 
 import {
@@ -23,171 +26,154 @@ import {
 
 import {
   arrowMove,
-  arrowR,
-  arrowU,
-  arrowD,
   enterKey,
 }
   from './JS/modules/linesNavigation.js';
-import { focusOn, getCaretPos } from './JS/modules/cursorMoving.js';
+import { focusOnTextarea, getCaretPos } from './JS/modules/cursorMoving.js';
 
 const langLettersCollection = [en, ru];
+state.langFromLocalStorage = localStorage.getItem('langFromLocalStorage') || 0;
 
-let langFromLocalStorage = localStorage.getItem('langFromLocalStorage') || 0;
-let shiftToggle = false;
-let capsToggle = false;
+createBlock(langLettersCollection[state.langFromLocalStorage]);
 
-const keysBlock = document.querySelector('.col');
-const textarea = document.querySelector('.textarea');
+/*htmlElements.textarea = document.getElementById('input');*/
+htmlElements.keysBlock = document.querySelector('.col');
+/*htmlElements.textarea = document.querySelector('.textarea');*/
 
-createBlock(langLettersCollection[langFromLocalStorage]);
 
-const body = document.querySelector('body');
-let posCaret = 0;
-const stack = [];
 
-body.addEventListener('keydown', (event) => {
-  focusOn(textarea);
-  posCaret = textarea.selectionStart;
+/*let posCaret = 0;
+const stack = [];*/
+
+htmlElements.body.addEventListener('keydown', (event) => {
+  focusOnTextarea();
+  state.posCaret = htmlElements.textarea.selectionStart;
   const idElem = document.querySelector(`#${event.code}`);
   if (event.code === 'CapsLock') {
-    if (capsToggle) {
-      capsToggle = false;
-    } else {
-      capsToggle = true;
-    }
+    state.capsToggle = !state.capsToggle;
   }
   if (event.code === 'AltLeft' || event.code === 'AltRight') {
     event.preventDefault();
-    stack.push('alt');
-    if (stack.length > 2) {
-      stack.shift();
+    state.stack.push('alt');
+    if (state.stack.length > 2) {
+      state.stack.shift();
     }
   }
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     event.preventDefault();
-    shiftToggle = true;
-    stack.push('shift');
-    if (stack.length > 2) {
-      stack.shift();
+    state.shiftToggle = true;
+    state.stack.push('shift');
+    if (state.stack.length > 2) {
+      state.stack.shift();
     }
   }
-  const newLangFromLocalStorage = langFromLocalStorage;
-  langFromLocalStorage = changeLang();
-  if (newLangFromLocalStorage !== langFromLocalStorage) {
-    const text = document.querySelector('.textarea').value;
-    body.innerHTML = '';
-    createBlock(langLettersCollection[langFromLocalStorage]);
-    document.querySelector('.textarea').value = text;
+  const newLangFromLocalStorage = state.langFromLocalStorage;
+  state.langFromLocalStorage = changeLang();
+  if (newLangFromLocalStorage !== state.langFromLocalStorage) {
+    /*const text = document.querySelector('.textarea').value;*/
+    const text = state.textarea.value;
+    htmlElements.body.innerHTML = '';
+    createBlock(langLettersCollection[state.langFromLocalStorage]);
+    /*document.querySelector('.textarea').value = text;*/
+    state.textarea.value = text;
   }
 
   idElem.classList.add('active');
-  posCaret = document.querySelector('textarea').selectionStart;
+  /*state.posCaret = document.querySelector('textarea').selectionStart;*/
+  state.posCaret = state.textarea.selectionStart;
 });
 
-body.addEventListener('keyup', (event) => {
-  focusOn(textarea);
+htmlElements.body.addEventListener('keyup', (event) => {
+  focusOnTextarea();
   const active = document.querySelector('.active');
   if (active) {
     active.classList.remove('active');
   }
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
     event.preventDefault();
-    shiftToggle = false;
+    state.shiftToggle = false;
   }
 });
 
-textarea.addEventListener('click', getCaretPos(posCaret));
+htmlElements.textarea.addEventListener('click', getCaretPos(state.posCaret));
 
-keysBlock.addEventListener('mousedown', (event) => {
-  focusOn(textarea);
-  posCaret = textarea.selectionStart;
-  const ident = String(event.target.dataset.mouseId);
+htmlElements.keysBlock.addEventListener('mousedown', (event) => {
+  focusOnTextarea();
+  state.posCaret = htmlElements.textarea.selectionStart;
+  const keyIdForMouse = String(event.target.dataset.mouseId);
   if (event.target.dataset.mouseId) {
     const active = document.querySelector('.active');
     if (active) {
       active.classList.remove('active');
     }
     event.target.classList.add('active');
-    if (!findEqual(ident, specials)) {
-      if (checkSymbols(getElementIndex(ident, keys))) {
+    if (!findEqual(keyIdForMouse, specials)) {
+      if (checkSymbols(getElementIndex(keyIdForMouse, symbolsKeys))) {
         event.preventDefault();
-        const index = getElementIndex(ident, keys);
-        const text = substitution(index, values);
-        textarea.value += text;
-        posCaret = document.querySelector('textarea').selectionStart;
+        const index = getElementIndex(keyIdForMouse, symbolsKeys);
+        const text = getKeyValueByIndex(index, symbolsValues);
+        htmlElements.textarea.value += text;
+        /*state.posCaret = document.querySelector('textarea').selectionStart;*/
+        state.posCaret = htmlElements.textarea.selectionStart;
       } else {
         event.preventDefault();
-        if (shiftToggle || capsToggle) {
-          textarea.value += event.target.dataset.mouseId.toUpperCase();
+        if (state.shiftToggle || state.capsToggle) {
+          htmlElements.textarea.value += event.target.dataset.mouseId.toUpperCase();
         } else {
-          textarea.value += event.target.dataset.mouseId;
+          htmlElements.textarea.value += event.target.dataset.mouseId;
         }
 
-        posCaret = document.querySelector('textarea').selectionStart;
+        /*state.posCaret = document.querySelector('textarea').selectionStart;*/
+        state.posCaret = htmlElements.textarea.selectionStart;
       }
     }
   }
   if (event.target.dataset.mouseId === 'capslock') {
-    if (capsToggle) {
-      capsToggle = false;
-    } else {
-      capsToggle = true;
-    }
+    state.capsToggle = !state.capsToggle;
   }
   if (event.target.dataset.mouseId === 'alt') {
     event.preventDefault();
-    stack.push('alt');
-    if (stack.length > 2) {
-      stack.shift();
-    }
+    state.stack.push('alt');
+    if (state.stack.length > 2) state.stack.shift();
   }
   if (event.target.dataset.mouseId === 'shift') {
     event.preventDefault();
-    shiftToggle = true;
-    stack.push('shift');
-    if (stack.length > 2) {
-      stack.shift();
-    }
+    state.shiftToggle = true;
+    state.stack.push('shift');
+    if (state.stack.length > 2) state.stack.shift();
   }
 });
 
-keysBlock.addEventListener('mouseup', (event) => {
+htmlElements.keysBlock.addEventListener('mouseup', (event) => {
   event.target.classList.remove('active');
   if (event.target.dataset.mouseId === 'shift') {
     event.preventDefault();
-    shiftToggle = false;
+    state.shiftToggle = false;
   }
 });
 
 /* ------------------ reset btn --------------------------- */
 const reset = document.querySelector('button');
 reset.addEventListener('click', () => {
-  document.querySelector('.textarea').value = '';
-  focusOn(textarea);
-  posCaret = 0;
+  /*document.querySelector('.textarea').value = ''; */
+  htmlElements.textarea.value = '';
+  focusOnTextarea();
+  state.posCaret = 0;
 });
 
-const backspace = document.querySelector('#Backspace');
-backspace.addEventListener('click', () => backspaceDeletion(posCaret));
+document.querySelector('#Backspace').addEventListener('click', () => backspaceDeletion(state.posCaret));
 
-const del = document.querySelector('#Delete');
-del.addEventListener('click', () => deleteDeletion(posCaret));
+document.querySelector('#Delete').addEventListener('click', () => deleteDeletion(state.posCaret));
 
-const leftArrow = document.querySelector('#ArrowLeft');
-leftArrow.addEventListener('click', () => arrowL(posCaret));
+document.querySelector('#ArrowLeft').addEventListener('click', () => arrowMove(state.posCaret, htmlElements.textarea, 'left'));
 
-const rigthArrow = document.querySelector('#ArrowRight');
-rigthArrow.addEventListener('click', () => arrowR(posCaret));
+document.querySelector('#ArrowRight').addEventListener('click', () => arrowMove(state.posCaret, htmlElements.textarea, 'right'));
 
-const upArrow = document.querySelector('#ArrowUp');
-upArrow.addEventListener('click', () => arrowU(posCaret));
+document.querySelector('#ArrowUp').addEventListener('click', () => arrowMove(state.posCaret, htmlElements.textarea, 'up'));
 
-const downArrow = document.querySelector('#ArrowDown');
-downArrow.addEventListener('click', () => arrowD(posCaret));
+document.querySelector('#ArrowDown').addEventListener('click', () => arrowMove(state.posCaret, htmlElements.textarea, 'down'));
 
-const enter = document.querySelector('#Enter');
-enter.addEventListener('click', (event) => enterKey(event));
+document.querySelector('#Enter').addEventListener('click', (event) => enterKey(event));
 
 /* ------------------- SHIFT & CAPS ------------------- */
 
