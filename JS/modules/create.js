@@ -19,7 +19,6 @@ export function createBlock(langLettersArray) {
   htmlElements.body.prepend(container);
   htmlElements.textarea = document.createElement('textarea');
   htmlElements.textarea.classList.add('textarea');
-  /*  textarea.setAttribute('contenteditable', 'true'); */
   htmlElements.textarea.setAttribute('id', 'input');
   container.append(htmlElements.textarea);
   const keyboard = document.createElement('div');

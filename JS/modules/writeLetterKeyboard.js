@@ -10,11 +10,12 @@ function keyDown(event){
     state.posCaret = htmlElements.textarea.selectionStart;
     const idElem = document.querySelector(`#${event.code}`);
 
-    if (event.code === 'CapsLock') {
-        console.log('capslock');
+    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+        event.preventDefault();
+        state.isCapsOn = true;
+        state.stack.push('shift');
 
-        createBlock(langLetters[state.langFromLocalStorage], state.isCapsOn);
-        state.capsToggle = !state.capsToggle;
+        if (state.stack.length > 2) state.stack.shift();
     }
 
     if (event.code === 'AltLeft' || event.code === 'AltRight') {
@@ -24,22 +25,22 @@ function keyDown(event){
         if (state.stack.length > 2) state.stack.shift();
     }
 
-    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-        event.preventDefault();
-        state.isCapsOn = true;
-        state.stack.push('shift');
+    if (event.code === 'CapsLock') {
+        console.log('capslock');
+        state.capsToggle = !state.capsToggle;
+        createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
 
-        if (state.stack.length > 2) state.stack.shift();
-    }
+    } else {
+        const newLangFromLocalStorage = state.langFromLocalStorage;
+        console.log('lang from state is ' + newLangFromLocalStorage);
+        state.langFromLocalStorage = changeLang();
 
-    const newLangFromLocalStorage = state.langFromLocalStorage;
-    state.langFromLocalStorage = changeLang();
-
-    if (newLangFromLocalStorage !== state.langFromLocalStorage) {
-        const text = htmlElements.textarea.value;
-        htmlElements.body.innerHTML = '';
-        createBlock(langLetters[state.langFromLocalStorage], state.isCapsOn);
-        htmlElements.textarea.value = text;
+        if (newLangFromLocalStorage !== state.langFromLocalStorage) {
+            const text = htmlElements.textarea.value;
+            htmlElements.body.innerHTML = '';
+            createBlock(langLetters[state.langFromLocalStorage], state.isCapsOn);
+            htmlElements.textarea.value = text;
+        }
     }
 
     idElem.classList.add('active');

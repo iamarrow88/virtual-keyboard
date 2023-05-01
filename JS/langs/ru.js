@@ -82,14 +82,14 @@ const ru = [
     code: 'Backspace',
     id: 'backspace',
     normal: 'Backspace',
-    caps: null,
+    caps: 'Backspace',
   }],
   /* -----------  ROW 2 ---------------------- */
   [{
     code: 'Tab',
     id: 'tab',
     normal: 'Tab',
-    caps: null,
+    caps: 'Tab',
   },
   {
     code: 'KeyQ',
@@ -173,14 +173,14 @@ const ru = [
     code: 'Delete',
     id: 'del',
     normal: 'Del',
-    caps: null,
+    caps: 'Del',
   }],
   /* ----------------------  ROW 3 --------------------------- */
   [{
     code: 'CapsLock',
     id: 'capslock',
     normal: 'Caps Lock',
-    caps: null,
+    caps: 'Caps Lock',
   },
   {
     code: 'KeyA',
@@ -252,14 +252,14 @@ const ru = [
     code: 'Enter',
     id: 'enter',
     normal: 'Enter',
-    caps: null,
+    caps: 'Enter',
   }],
   /* --------------------  ROW 4 ----------------------------- */
   [{
     code: 'ShiftLeft',
     id: 'shift',
     normal: 'Shift',
-    caps: null,
+    caps: 'Shift',
   },
   {
     code: 'KeyZ',
@@ -325,68 +325,68 @@ const ru = [
     code: 'ArrowUp',
     id: 'arrowup',
     normal: '&#x21D1',
-    caps: null,
+    caps: '&#x21D1',
   },
   {
     code: 'ShiftRight',
     id: 'shift',
     normal: 'Shift',
-    caps: null,
+    caps: 'Shift'
   }],
   /* ----------------------------  ROW 5 ----------------------- */
   [{
     code: 'ControlLeft',
     id: 'control',
     normal: 'Ctrl',
-    caps: null,
+    caps: 'Ctrl',
   },
   {
     code: 'MetaLeft',
     id: 'meta',
     normal: 'Win',
-    caps: null,
+    caps: 'Win',
   },
   {
     code: 'AltLeft',
     id: 'alt',
     normal: 'Alt',
-    caps: null,
+    caps: 'Alt',
   },
   {
     code: 'Space',
     id: 'space',
     normal: ' ',
-    caps: null,
+    caps: ' ',
   },
   {
     code: 'ControlRight',
     id: 'control',
     normal: 'Ctrl',
-    caps: null,
+    caps: 'Ctrl',
   },
   {
     code: 'ArrowLeft',
     id: 'arrowleft',
     normal: '&#x21D0',
-    caps: null,
+    caps: '&#x21D0',
   },
   {
     code: 'ArrowDown',
     id: 'arrowdown',
     normal: '&#x21D3',
-    caps: null,
+    caps: '&#x21D3',
   },
   {
     code: 'ArrowRight',
     id: 'arrowright',
     normal: '&#x21D2',
-    caps: null,
+    caps: '&#x21D2',
   },
   {
     code: 'AltRight',
     id: 'alt',
     normal: 'Alt',
-    caps: null,
+    caps: 'Alt',
   }],
 ];
 
