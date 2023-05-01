@@ -2,8 +2,6 @@ import { focusOnTextarea, getCaretPos } from './cursorMoving.js';
 import htmlElements from './state/htmlElements.js';
 import state from "./state/state.js";
 
-/* const textarea = ; */
-
 export function backspaceDeletion() {
   focusOnTextarea();
   getCaretPos();

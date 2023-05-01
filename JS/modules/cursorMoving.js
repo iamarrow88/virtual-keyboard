@@ -7,6 +7,5 @@ export function focusOnTextarea() {
 
 export function getCaretPos() {
   state.posCaret = htmlElements.textarea.selectionStart;
-  console.log(`state.posCaret is ${state.posCaret}`);
   return state.posCaret;
 }

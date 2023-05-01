@@ -1,5 +1,6 @@
 import htmlElements from "./state/htmlElements.js";
 import state from "./state/state.js";
+import addEventListeners from "./addEventListeners.js";
 
 htmlElements.body = document.querySelector('body');
 
@@ -31,10 +32,10 @@ export function createBlock(langLettersArray) {
     const row = createKey(langLettersArray[i], state.capsToggle);
     col.append(row);
   }
+  addEventListeners();
 }
 
 export function createKey(arrayOfKeys, isCaps) {
-  console.log(isCaps);
   const row = document.createElement('div');
   row.classList.add('row');
   for (let k = 0; k < arrayOfKeys.length; k++) {

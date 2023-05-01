@@ -8,17 +8,16 @@ import {checkSymbols, findEqual, getElementIndex, getKeyValueByIndex} from "./cl
 
 function mouseDown(event) {
     focusOnTextarea();
-    /*state.posCaret = htmlElements.textarea.selectionStart;*/
     const keyIdForMouse = event.target.dataset.mouseId;
-    console.log(keyIdForMouse);
-    console.log(event.target.dataset.mouseId);
 
     if (event.target.dataset.mouseId) {
         const active = document.querySelector('.active');
         if (active) active.classList.remove('active');
 
         event.target.classList.add('active');
+
         if (!findEqual(keyIdForMouse, langLetters.specials)) {
+
             if (checkSymbols(getElementIndex(keyIdForMouse, langLetters.symbolsKeys))) {
                 event.preventDefault();
                 const index = getElementIndex(keyIdForMouse, langLetters.symbolsKeys);
@@ -27,19 +26,20 @@ function mouseDown(event) {
                 state.posCaret = htmlElements.textarea.selectionStart;
             } else {
                 event.preventDefault();
+
                 if (state.isCapsOn || state.capsToggle) {
                     htmlElements.textarea.value += event.target.dataset.mouseId.toUpperCase();
                 } else {
                     htmlElements.textarea.value += event.target.dataset.mouseId;
                 }
+
                 state.posCaret = htmlElements.textarea.selectionStart;
             }
         }
     }
     if (event.target.dataset.mouseId === 'capslock') {
-        console.log('capslock');
-        createBlock(langLetters[state.langFromLocalStorage], state.isCapsOn);
         state.capsToggle = !state.capsToggle;
+        createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
     }
 
     if (event.target.dataset.mouseId === 'alt') {
@@ -50,7 +50,6 @@ function mouseDown(event) {
     if (event.target.dataset.mouseId === 'shift') {
         event.preventDefault();
         state.isCapsOn = true;
-        /*console.log(state);*/
 
         if (state.stack.length > 2) state.stack.shift();
     }

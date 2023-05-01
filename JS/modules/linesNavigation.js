@@ -14,9 +14,7 @@ export function arrowMove(direction) {
     ++state.posCaret;
   } else if (direction === 'up') {
     console.log('press up');
-    /*if(state.line !== 0){
 
-    }*/
     if(state.posCaret > 70) {
       state.posCaret -= 70;
     }
@@ -27,39 +25,9 @@ export function arrowMove(direction) {
     }
   }
   console.log(state.posCaret);
-  document.querySelector('textarea').setSelectionRange(state.posCaret, state.posCaret);
+  htmlElements.textarea.setSelectionRange(state.posCaret, state.posCaret);
   return state.posCaret;
 }
-
-/*export function arrowR(posCaret, textarea, direction) {
-  focusOn(textarea);
-  posCaret = getCaretPos();
-  ++posCaret;
-  console.log(posCaret);
-  document.querySelector('textarea').setSelectionRange(posCaret, posCaret);
-  return posCaret;
-}*/
-
-/*export function arrowU(posCaret, textarea, direction) {
-  focusOn(textarea);
-  posCaret = getCaretPos();
-  if (posCaret > 70) {
-    posCaret -= 70;
-  }
-  console.log(posCaret);
-  document.querySelector('textarea').setSelectionRange(posCaret, posCaret);
-  return posCaret;
-}*/
-
-/*export function arrowD(posCaret, textarea, direction) {
-  focusOn(textarea);
-  posCaret = getCaretPos();
-  if (posCaret < document.querySelector('.textarea').value.length) {
-    posCaret += 70;
-  }
-  document.querySelector('textarea').setSelectionRange(posCaret, posCaret);
-  return posCaret;
-}*/
 
 export function enterKey(event) {
   focusOnTextarea();

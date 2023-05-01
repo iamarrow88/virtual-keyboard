@@ -22,17 +22,16 @@ function keyDown(event){
         event.preventDefault();
         state.stack.push('alt');
         state.altToggle = true;
+
         if (state.stack.length > 2) state.stack.shift();
     }
 
     if (event.code === 'CapsLock') {
-        console.log('capslock');
         state.capsToggle = !state.capsToggle;
         createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
 
     } else {
         const newLangFromLocalStorage = state.langFromLocalStorage;
-        console.log('lang from state is ' + newLangFromLocalStorage);
         state.langFromLocalStorage = changeLang();
 
         if (newLangFromLocalStorage !== state.langFromLocalStorage) {
