@@ -6,7 +6,4 @@ export default {
     'langSwitchToggleStack': [],
     'line': 0,
     'stack': []
-
-
-
 }

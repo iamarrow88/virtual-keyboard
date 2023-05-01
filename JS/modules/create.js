@@ -1,5 +1,5 @@
 import htmlElements from "./state/htmlElements.js";
-import state from "./state/state";
+import state from "./state/state.js";
 
 htmlElements.body = document.querySelector('body');
 
