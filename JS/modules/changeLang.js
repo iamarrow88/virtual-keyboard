@@ -1,7 +1,7 @@
-import state from "./state/state.js";
-import htmlElements from "./state/htmlElements.js";
-import {createBlock} from "./create.js";
-import langLetters from "../langs/langLetters.js";
+import state from './state/state.js';
+import htmlElements from './state/htmlElements.js';
+import { createBlock } from './create.js';
+import langLetters from '../langs/langLetters.js';
 
 function changeLang(initialPoint) {
   function actChangeLang() {
@@ -14,20 +14,17 @@ function changeLang(initialPoint) {
   }
 
   if (initialPoint === 'keyboard') {
-    if(state.stack[0] === 'shift' && state.stack[1] === 'alt') {
+    if (state.stack[0] === 'shift' && state.stack[1] === 'alt') {
       actChangeLang();
     }
     if (state.stack.length > 2) {
       state.stack.shift();
     }
-  } else if(initialPoint === 'mouse'){
+  } else if (initialPoint === 'mouse') {
     actChangeLang();
   }
 
   return state.langFromLocalStorage;
 }
 
-
-
-
-export {changeLang}
+export { changeLang };

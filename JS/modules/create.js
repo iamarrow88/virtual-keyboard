@@ -1,6 +1,6 @@
-import htmlElements from "./state/htmlElements.js";
-import state from "./state/state.js";
-import addEventListeners from "./addEventListeners.js";
+import htmlElements from './state/htmlElements.js';
+import state from './state/state.js';
+import addEventListeners from './addEventListeners.js';
 
 htmlElements.body = document.querySelector('body');
 
@@ -42,8 +42,8 @@ export function createKey(arrayOfKeys, isCaps) {
     const key = document.createElement('div');
     const elemClass = arrayOfKeys[k].code.toLowerCase();
     key.classList.add('row__keys', `${elemClass}`);
-    if(arrayOfKeys[k].id !== 'meta') {
-      if(isCaps){
+    if (arrayOfKeys[k].id !== 'meta') {
+      if (isCaps) {
         key.innerHTML = arrayOfKeys[k].caps;
       } else {
         key.innerHTML = arrayOfKeys[k].normal;
@@ -53,12 +53,12 @@ export function createKey(arrayOfKeys, isCaps) {
     key.setAttribute('id', arrayOfKeys[k].code);
     key.dataset.mouseId = arrayOfKeys[k].id;
 
-    if(arrayOfKeys[k].id === 'meta') {
+    if (arrayOfKeys[k].id === 'meta') {
       const img = document.createElement('img');
       img.classList.add('change-lang');
       img.src = './assets/changeLang.png';
       img.dataset.mouseId = arrayOfKeys[k].id;
-      key.append(img)
+      key.append(img);
     }
     row.append(key);
   }

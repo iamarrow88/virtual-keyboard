@@ -331,7 +331,7 @@ const en = [
     code: 'ShiftRight',
     id: 'shift',
     normal: 'Shift',
-    caps: 'Shift'
+    caps: 'Shift',
   }],
   /* ----------------------------  ROW 5 ----------------------- */
   [{
@@ -356,7 +356,7 @@ const en = [
     code: 'Space',
     id: 'space',
     normal: ' ',
-    caps:  ' ',
+    caps: ' ',
   },
   {
     code: 'ControlRight',
@@ -380,7 +380,7 @@ const en = [
     code: 'ArrowRight',
     id: 'arrowright',
     normal: '&#x21D2',
-    caps: '&#x21D2'
+    caps: '&#x21D2',
   },
   {
     code: 'AltRight',
