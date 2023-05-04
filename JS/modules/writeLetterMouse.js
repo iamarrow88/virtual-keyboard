@@ -42,6 +42,7 @@ function mouseDown(event) {
 
   if (event.target.dataset.mouseId === 'capslock') {
     state.capsToggle = !state.capsToggle;
+    document.querySelector('body').innerHTML = '';
     createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
   }
 

@@ -28,6 +28,7 @@ function keyDown(event) {
 
   if (event.code === 'CapsLock') {
     state.capsToggle = !state.capsToggle;
+    document.querySelector('body').innerHTML = '';
     createBlock(langLetters[state.langFromLocalStorage], !state.isCapsOn);
   } else {
     state.langFromLocalStorage = changeLang('keyboard');
