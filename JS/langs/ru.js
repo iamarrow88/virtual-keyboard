@@ -331,7 +331,7 @@ const ru = [
     code: 'ShiftRight',
     id: 'shift',
     normal: 'Shift',
-    caps: 'Shift'
+    caps: 'Shift',
   }],
   /* ----------------------------  ROW 5 ----------------------- */
   [{

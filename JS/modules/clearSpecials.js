@@ -12,7 +12,7 @@ export function getElementIndex(elem, arrayOfKeys) {
 }
 
 export function checkSymbols(index) {
-   return index > -1;
+  return index > -1;
 }
 
 export function getKeyValueByIndex(index, values) {
