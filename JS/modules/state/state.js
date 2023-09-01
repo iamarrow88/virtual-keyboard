@@ -1,5 +1,5 @@
 export default {
-  langFromLocalStorage: 'ru',
+  langFromLocalStorage: "ru",
   isCapsOn: false,
   capsToggle: false,
   posCaret: 0,

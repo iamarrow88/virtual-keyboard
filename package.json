@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "check": "npx eslint *.js",
-    "fix": "npx eslint *.js --fix"
+    "check": "npx eslint **/*.js",
+    "fix": "npx eslint **/*.js --fix"
   },
   "repository": {
     "type": "git",

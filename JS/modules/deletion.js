@@ -1,6 +1,6 @@
-import { focusOnTextarea, getCaretPos } from './cursorMoving.js';
-import htmlElements from './state/htmlElements.js';
-import state from './state/state.js';
+import { focusOnTextarea, getCaretPos } from "./cursorMoving.js";
+import htmlElements from "./state/htmlElements.js";
+import state from "./state/state.js";
 
 export function backspaceDeletion() {
   focusOnTextarea();
@@ -17,10 +17,10 @@ export function backspaceDeletion() {
 export function deleteDeletion() {
   focusOnTextarea();
   state.posCaret = getCaretPos();
-  const text = htmlElements.textarea.value.split('');
+  const text = htmlElements.textarea.value.split("");
   if (state.posCaret > 0) {
     state.posCaret -= 1;
     text.splice(state.posCaret, 1);
   }
-  htmlElements.textarea.value = text.join('');
+  htmlElements.textarea.value = text.join("");
 }
